@@ -1,7 +1,7 @@
 import Point = require('./Point');
 
 class Cube {
-  static Size = 4;
+  static Size = 3;
   static DistanceBetweenLedgeAndStart = Math.sqrt(2);
   startPoint: Point;
   endPoint: Point;
@@ -81,18 +81,16 @@ class Cube {
     }
   }
   print() {
-    console.log(this.startPoint.print());
-    console.log(this.endPoint.print());
-    console.log(this.ledgePoint.print());
+    this.startPoint.print();
+    this.endPoint.print();
+    this.ledgePoint.print();
   }
   getAllPoints(): Point[] {
     var points: Point[] = [];
     points.push(this.startPoint);
     var diffCoor = this.startPoint.inWhatCooordinateDifference(this.endPoint);
     var direction: number;
-    if (diffCoor === 'x') {
 
-    }
     switch (diffCoor) {
       case 'x':
         direction = this.startPoint.x - this.endPoint.x < 0? 1: -1;

@@ -8,6 +8,7 @@ class CubePositionGenetator {
     this.point = point;
     this.generateRotationsNearStartPoint();
   }
+
   getNextPosition(): Cube {
     return this.cubePositions.shift();
   }
@@ -19,20 +20,20 @@ class CubePositionGenetator {
     this.addCubeRotationsByStartAndEnd(startPoint, new Point(this.point.x, this.point.y + Cube.Size, this.point.z));
     this.addCubeRotationsByStartAndEnd(startPoint, new Point(this.point.x, this.point.y - Cube.Size, this.point.z));
     this.addCubeRotationsByStartAndEnd(startPoint, new Point(this.point.x, this.point.y, this.point.z + Cube.Size));
-    this.addCubeRotationsByStartAndEnd(startPoint, new Point(this.point.x, this.point.y, this.point.z - Cube.Size));
+    //this.addCubeRotationsByStartAndEnd(startPoint, new Point(this.point.x, this.point.y, this.point.z - Cube.Size));
 
     this.addCubeRotationsByStartAndLedge(new Point(this.point.x - 1, this.point.y - 1, this.point.z), this.point);
     this.addCubeRotationsByStartAndLedge(new Point(this.point.x + 1, this.point.y - 1, this.point.z), this.point);
     this.addCubeRotationsByStartAndLedge(new Point(this.point.x + 1, this.point.y + 1, this.point.z), this.point);
     this.addCubeRotationsByStartAndLedge(new Point(this.point.x - 1, this.point.y + 1, this.point.z), this.point);
 
-    this.addCubeRotationsByStartAndLedge(new Point(this.point.x - 1, this.point.y, this.point.z - 1), this.point);
-    this.addCubeRotationsByStartAndLedge(new Point(this.point.x + 1, this.point.y, this.point.z - 1), this.point);
+    //this.addCubeRotationsByStartAndLedge(new Point(this.point.x - 1, this.point.y, this.point.z - 1), this.point);
+    //this.addCubeRotationsByStartAndLedge(new Point(this.point.x + 1, this.point.y, this.point.z - 1), this.point);
     this.addCubeRotationsByStartAndLedge(new Point(this.point.x + 1, this.point.y, this.point.z + 1), this.point);
     this.addCubeRotationsByStartAndLedge(new Point(this.point.x - 1, this.point.y, this.point.z + 1), this.point);
 
-    this.addCubeRotationsByStartAndLedge(new Point(this.point.x, this.point.y - 1, this.point.z - 1), this.point);
-    this.addCubeRotationsByStartAndLedge(new Point(this.point.x, this.point.y + 1, this.point.z - 1), this.point);
+    //this.addCubeRotationsByStartAndLedge(new Point(this.point.x, this.point.y - 1, this.point.z - 1), this.point);
+    //this.addCubeRotationsByStartAndLedge(new Point(this.point.x, this.point.y + 1, this.point.z - 1), this.point);
     this.addCubeRotationsByStartAndLedge(new Point(this.point.x, this.point.y + 1, this.point.z + 1), this.point);
     this.addCubeRotationsByStartAndLedge(new Point(this.point.x, this.point.y - 1, this.point.z + 1), this.point);
   }

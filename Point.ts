@@ -38,7 +38,7 @@ class Point {
     throw 'difference in more than one coordinate';
   }
   print() {
-    console.log('x: ' + this.x + 'y: ' + this.y + 'z: ' + this.z);
+    console.log('x: ' + this.x + ' y: ' + this.y + ' z: ' + this.z);
   }
 }
 

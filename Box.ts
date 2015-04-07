@@ -18,6 +18,42 @@ class Box {
         }
       }
     }
+
+    //for (var z = 0; z < 4; ++z) {
+    //  this.grid[z] = [];
+    //  for (var x = 0; x < Box.Size; ++x) {
+    //    this.grid[z][x] = [];
+    //    for (var y = 0; y < Box.Size; ++y) {
+    //      this.grid[z][x][y] = false;
+    //    }
+    //  }
+    //}
+
+    //this.grid[0][2][1] = true;
+    //this.grid[0][2][2] = true;
+    //this.grid[0][2][3] = true;
+    //this.grid[0][1][2] = true;
+    //this.grid[0][3][2] = true;
+    //
+    //this.grid[1][2][1] = true;
+    //this.grid[1][2][2] = true;
+    //this.grid[1][2][3] = true;
+    //this.grid[1][1][2] = true;
+    //this.grid[1][3][2] = true;
+    //
+    //this.grid[2][2][1] = true;
+    //this.grid[2][2][2] = true;
+    //this.grid[2][2][3] = true;
+    //this.grid[2][1][2] = true;
+    //this.grid[2][3][2] = true;
+    //
+    //
+    //this.grid[3][2][1] = true;
+    //this.grid[3][2][2] = true;
+    //this.grid[3][2][3] = true;
+    //this.grid[3][1][2] = true;
+    //this.grid[3][3][2] = true;
+
   }
 
   tryAddCube(cube: Cube): boolean {
@@ -30,23 +66,25 @@ class Box {
     }
 
     this.cubeSequence.push(cube);
-    this.fillGrid(cubePoints);
+    this.fillGrid(cubePoints, true);
 
     return true;
   }
 
-  private fillGrid(cubePoints: Point[]) {
+  private fillGrid(cubePoints: Point[], prop: boolean) {
     for (var i = 0; i < cubePoints.length; ++i) {
       var point = cubePoints[i];
-      this.grid[point.z][point.x][point.y] = true;
+      this.grid[point.z][point.x][point.y] = prop;
     }
   }
 
   removeLastCube(): void {
-    this.cubeSequence.pop();
+    var cubeToRemove = this.cubeSequence.pop();
+    var cubePoints = cubeToRemove.getAllPoints();
+    this.fillGrid(cubePoints, false);
   }
 
-  isPointFilled(point: Point): boolean {
+  private isPointFilled(point: Point): boolean {
     return this.grid[point.z][point.x][point.y];
   }
 
@@ -56,6 +94,7 @@ class Box {
   getEmptyPoints(): Point[] {
     var emptyPoints: Point[] = [];
     for (var z = 0; z < Box.Size; ++z) {
+    //for (var z = 0; z < 4; ++z) {
       if (emptyPoints.length) {
         break;
       }
@@ -82,7 +121,7 @@ class Box {
   /**
    * false if OK
    */
-  isPointsCrossBoxCubes(cubePoints: Point[]): boolean {
+  private isPointsCrossBoxCubes(cubePoints: Point[]): boolean {
     for (var i = 0; i < cubePoints.length; ++i) {
       var point = cubePoints[i];
       if (this.isPointFilled(point)) {
@@ -115,6 +154,7 @@ class Box {
       return false;
     }
     return this.checkCoordinateToBorders(point.z);
+    //return point.z >=0 && (point.z < 4);
   }
   static checkCoordinateToBorders(coordinate: number): boolean {
     return (coordinate >= 0) && (coordinate < Box.Size);
